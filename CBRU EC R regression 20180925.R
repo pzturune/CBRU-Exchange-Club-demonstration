@@ -16,6 +16,7 @@ library(car); library(QuantPsyc); library(GGally)
 #In part 1 we simulated data for our analyses and saved it. Here we read that data th
 
 ReadingData <- read.csv("SimulationDataVarsWithMissingness.txt", header = TRUE, sep = ";")
+View(ReadingData) #open up the data viewer
 str(ReadingData)
 describe(ReadingData[,2:5])
 
