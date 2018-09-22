@@ -20,4 +20,4 @@ Failed attempts:
 -Tried to manually add "sep=," as the first row in the .csv file I had saved in the last try. This confuses JASP. JASP still opens the file but only displays the first column. JASP opens the data in Excel for editing. Data works perfectly in Excel.
 
 Specs:
-Microsoft Excel 2010, JASP 0.9.0.1, R 3.3.3
+Microsoft Excel 2010, JASP 0.9.0.1, R 3.3.3 
