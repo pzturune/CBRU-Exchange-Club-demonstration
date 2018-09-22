@@ -95,8 +95,8 @@ varsMiss[,6:8]<-NULL
 #Otherwise it is lost when we rerun the simulation, as this writes over the old data
 #I'm saving the full data as well so that it's possible to see how missingness affects results (if that is in the scope of what you want to do)
 
-write.table(vars, "SimulationDataVars.txt", sep = ";")
-write.table(varsMiss, "SimulationDataVarsWithMissingness.txt", sep = ";")
+write.table(vars, "SimulationDataVars.txt", sep = ";", row.names=FALSE)
+write.table(varsMiss, "SimulationDataVarsWithMissingness.txt", sep = ";", row.names=FALSE)
 varsMiss <- read.csv("SimulationDataVarsWithMissingness.txt", header = TRUE, sep = ";")
 describe(varsMiss)
 
