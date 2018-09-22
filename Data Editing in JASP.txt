@@ -1,0 +1,23 @@
+JASP doesn't have a lot of data editing options (see https://jasp-stats.org/2018/05/15/data-editing-in-jasp/). However, there is a built-in option of opening the data in a variety of other data editors from JASP. I thought I'd use Excel.
+
+I had trouble with streamlining the process of moving the data from R to JASP in a way that it will easily open with Excel for data editing. I didn't succeed.
+
+To reproduce what I did:
+save the data as .txt in R [this is in the code of file "CBRU EC R intro[...]", probably around line 100]
+import the data to Excel from the "Data" tab, using "From Text". This opens the Text Import Wizard (TIW). Find your text file from where you saved it
+TIW Step 1 of 3: "Delimited", "1", "Windows (ANSI)"
+TIW Step 2 of 3: "Semicolon" [needs to be checked], """[at least for me - R saved the variable names with "" around them]
+TIW Step 3 of 3: "General"[already chosen for me], press "Finish", press "Ok"
+File -> Save as -> choose a name and a place to save it to and use "CSV (Comma delimited) (*.csv)" from the "Save as type" -drop down menu
+Open the CSV with JASP
+
+And after this, at least for me, double clicking on the data matrix in JASP (the space where the observed/simulated values are) will open the data in Excel for editing. If this does not work for you or you have a better idea, let me know.
+
+Failed attempts:
+-Tried to use the .txt file that I had opened in JASP. Went to JASP Preferences, to tab "Data Editing", and unchecked the "Use default spreadsheet editor". Pressed "Open", tried to find Excel .exe or something like that that I could tell JASP to use. Could not find anything that would have worked. 
+-Tried to save from R as .xlsx so that JASP would use Excel for data editing. Did not work, JASP doesn't open xlsx files.
+-Tried to save as .csv from R and open with JASP. This part worked. JASP opened the file in Excel for editing. However, Excel couldn't handle the comma delimiter. I assume this is because, even though I've set the decimal to be . and not , in Excel, it adheres to some area specific computer settings in this case. I live in a country that commonly uses , as a decimal marker.
+-Tried to manually add "sep=," as the first row in the .csv file I had saved in the last try. This confuses JASP. JASP still opens the file but only displays the first column. JASP opens the data in Excel for editing. Data works perfectly in Excel.
+
+Specs:
+Microsoft Excel 2010, JASP 0.9.0.1, R 3.3.3
