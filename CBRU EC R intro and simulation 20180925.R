@@ -22,7 +22,7 @@ data_x<-read.csv("data_x_version1.1.txt", header = TRUE, sep = ";")
 install.packages("simstudy")
 
 #activating modules with functions that I have previously installed
-library(psych); library(simstudy); library(plyr)
+library(psych); library(simstudy); library(plyr); library(pwr)
 
 #I'm simulating data that we will use, and saving it for later use so the results that we get can
 #be reproduced
@@ -100,3 +100,30 @@ write.table(varsMiss, "SimulationDataVarsWithMissingness.txt", sep = ";")
 varsMiss <- read.csv("SimulationDataVarsWithMissingness.txt", header = TRUE, sep = ";")
 describe(varsMiss)
 
+#####
+#POWER
+
+#if we would have been planning a study and collecting real data, 
+#we would have wanted to make some power calculations
+
+#CORRELATIONS
+pwr.r.test(n=NULL, r=.10, power=.80, sig.level=.05)
+#you can set any of the arguments to null and specify the rest to get the NULL one calculated
+#if you want to easily export a single value, for example the n, do this:
+pwr.r.test(n=NULL, r=.10, power=.80, sig.level=.05)$n
+
+#MULTIPLE REGRESSION
+pwr.f2.test(u=3, v=300-(3+1), f2=.15, power=NULL)
+#u=number of predictors, v=(n-(u+1)), f2=Cohen's effect size f2 = r2 / (1  - r2)
+#and interpreted as 0.02=small, 0.15=medium, 0.35=large
+pwr.f2.test(u=1, v=NULL, f2=.15, power=.85)
+
+#ANOVA
+pwr.anova.test(k=2,n=NULL,f=.25, power=.9)
+#again, play around. K=number of groups, n=observations/cell, f=Cohen's effect size f
+#f values are interpreted as 0.1=small, 0.25=medium, 0.4=large
+
+#if you want to know more about a package or about a function, you can do this:
+??pwr
+?pwr
+?pwr.anova.test
