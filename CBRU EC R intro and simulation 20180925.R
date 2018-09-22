@@ -13,10 +13,7 @@
 
 
 #setting the working directory so that R knows where to get files from and where to save them
-setwd("C:/Users/Hiekka/Documents/Psykologia/Väikkäri/Data/linear20180730")
-
-#reading imaginary data from a file in working directory
-data_x<-read.csv("data_x_version1.1.txt", header = TRUE, sep = ";")
+setwd("C:/Users/Hiekka/Documents/Psykologia/Väikkäri/Data/CBRUEC")
 
 #Installing a package/module that I didn't have before
 install.packages("simstudy")
