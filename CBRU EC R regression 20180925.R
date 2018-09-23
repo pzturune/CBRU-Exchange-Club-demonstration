@@ -2,18 +2,18 @@
 #Piia Turunen
 
 #R DEMONSTRATION FOR CBRU EXCHANGE CLUB on 25.9.2018
-#PART 2: DESCRIPTIVES
+#PART 2: DESCRIPTIVES AND REGRESSION
 
 #Please note that checking assumptions is not explicitly included in this at the moment
 
 #setting the working directory so that R knows where to get files from and where to save them
-setwd("C:/Users/Hiekka/Documents/Psykologia/V‰ikk‰ri/Data/CBRUEC")
+setwd("C:/Users/Hiekka/Documents/Psykologia/V√§ikk√§ri/Data/CBRUEC")
 
 #activating modules with functions that I have previously installed
 library(psych); library(plyr); library(summarytools); library(ggplot2)
 library(car); library(QuantPsyc); library(GGally)
 
-#In part 1 we simulated data for our analyses and saved it. Here we read that data th
+#In part 1 we simulated data for our analyses and saved it. Here we read that data
 
 ReadingData <- read.csv("SimulationDataVarsWithMissingness.txt", header = TRUE, sep = ";")
 View(ReadingData) #open up the data viewer
