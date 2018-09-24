@@ -55,22 +55,29 @@ library(psych); library(simstudy); library(plyr); library(pwr)
 
 #We're going to create four variables: phonological processing (PP), rapid naming skills (RAN), 
 #reading accuracy (Reading), and (male) sex (sexM).
-#We're going to pretend the first three are standard points, and only full points 
+#We're going to pretend the first three are in standard points, and only full points 
 #I'm taking inspiration to the correlation matrix we create here from the matrix in our real study
 
-#creating a correlation matrix CMatrix in four rows (four variables)
-#I'm just naming it CMatrix. Could have been something else as well, for example "MyThingX".
-#Informative names are preferred, and annotating code so you or someone who later 
+#creating a correlation matrix CMatrix in four rows (for our four variables)
+#I'm naming it CMatrix. Could have been something else as well, for example "My_thing_X".
+#Informative names are preferred as well as annotating code so you or someone who later 
 #works on the code can understand what was done
 CMatrix<-matrix(c(1, -0.2, 0.4, -0.1, -0.2, 1, -0.1, -0.05, 0.4, -0.1, 1, -0.15, -0.1, -0.05, -0.15, 1), nrow = 4)
+# <- means you assign the thing on the right side to the entity on the left. You "create" the entity
+#matrix and c are functions that you give arguments (specifications) to
+#c makes a vector and matrix makes a matrix. Here we make basically combine values to make a "list" 
+#and then feed that to the matrix and tell it there are four rows so it can make the vector into a matrix
 CMatrix #executing this row prints the created matrix onto the console
 
-#generating data with these arguments: n=600, var means are 10, 10, 50, 0.5 and var sd:s are 3,3,10,0.5,
-#and we're using the correlation matrix that we just created
+#We will be generating data with these arguments: n=300, variable means are 10, 10, 50, 0.5,
+#var sd:s are 3, 3, 10, 0.5, and we're using the correlation matrix that we just created to
+#shape the relationships between the variables
+
 #please note that when this is run, it creates a different data set each time which means that any results
-#you get at one time point will differ from the rerun unless you save your creations and read them on later tries
-#instead of generating new data
+#you get at one time point will differ from the rerun unless you save your creations and read them on 
+#later use instead of generating new data
 vars<-genCorData(300, mu = c(10, 10, 50, 0.5), sigma = c(3, 3, 10, 0.1), corMatrix = CMatrix)
+#again, assigning to var the product of the function genCorData with the specifications fed to it
 vars
 
 vars<-round(vars, digits=0)  #rounding to whole numbers
@@ -103,9 +110,9 @@ small_sample #we see it's here now
 #first I'm making a new dataset so we don't destroy the old one!
 
 varsMiss<-vars
-varsMiss$missingnessIndicatorPP<-rbinom(300,1,0.97) #3% of data missing
-varsMiss$missingnessIndicatorRAN<-rbinom(300,1,0.97) #3% of data missing
-varsMiss$missingnessIndicatorReading<-rbinom(300,1,0.95) #5% of data missing
+varsMiss$missingnessIndicatorPP<-rbinom(300,1,0.97) #3% probability for each observation to be assigned missing
+varsMiss$missingnessIndicatorRAN<-rbinom(300,1,0.97) 
+varsMiss$missingnessIndicatorReading<-rbinom(300,1,0.95) #5% probability for each observation to be assigned missing
 
 varsMiss$missingnessIndicatorPP
 count(varsMiss[,6]) #count data from the PP missingness indicator
