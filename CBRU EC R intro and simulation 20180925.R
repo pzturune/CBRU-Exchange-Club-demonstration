@@ -4,33 +4,64 @@
 #R DEMONSTRATION FOR CBRU EXCHANGE CLUB on 25.9.2018
 #PART 1: GETTING FAMILIAR WITH R + DATA SIMULATION
 
-#when you put "#" before your text, anything on the same for following it is a comment
+#### COMMENTS AND EXECUTING COMMANDS
+
+#when you put "#" before your text, anything on the same row following it is a comment
 #when you execute that row, comments won't be executed unless you have chosen them specifically and not "#"
+#to execute a row when a cursor is on it (anywhere on it), press ctrl+enter 
+#you can first press ctrl and then while still holding it down, press enter
+#if your cursor in on a row where there is nothing executable, R will just continue down one row
+#at a time until it finds something to execute
+#if you want to execute a part of something, paint it with a mouse or by ctrl+shift+arrows (might vary in OS's?) 
+#like you would with a text document
 
 #example:
 #3+5
 3+5 #+6+12
 
+#### PREPARING FOR A SESSION
 
 #setting the working directory so that R knows where to get files from and where to save them
+#you need to change this to reflect wherever you want to keep your files
 setwd("C:/Users/Hiekka/Documents/Psykologia/Väikkäri/Data/CBRUEC")
 
-#Installing a package/module that I didn't have before
-install.packages("simstudy")
+#R is the programming language that we use here. There are some basic functions that are included
+#in the base version of R.
+#However, for anything more complex, you will need to add modules that are called packages.
+#These packages include the mathematical formulas etc that you use when you do statistical analyses.
+#You could just program the code yourself: tell R how to calculate something.
+#But that's often unnecessary when you can just use the code that exists.
+
+#Here's how I install a package that I need but didn't have before. You only install once
+install.packages("simstudy")  
+#btw " and ' are basically interchangeable so no need to worry about which to use
+
+#you can also just make installing a conditional part of your code for those instances 
+#where someone else might use it or you will, on a different computer and do not necessarily have it
+#if you don't have a package, this will install it for you, but if you do, it doesn't install it again
+if(!require(psych)){install.packages("psych")}
+#this also activates the package whether it also installed it or not so it wouldn't actually need
+#to be on the activating list three rows down but I'll keep it there for easier use as it does no harm
 
 #activating modules with functions that I have previously installed
 library(psych); library(simstudy); library(plyr); library(pwr)
 
-#I'm simulating data that we will use, and saving it for later use so the results that we get can
-#be reproduced
+#### DATA SIMULATION
+
+#I'm simulating the data that we will use, and saving it for later 
+#so the results that we get can be reproduced
 
 #I'll simulate based on an imaginary correlation matrix to make the data "natural"-like
 
-#We're going to create three variables: phonological processing (PP), rapid naming skills (RAN), reading accuracy (Reading), and male sex (sexM).
-#We're going to pretend these are standard points and only full points 
-#I'm taking inspiration to the correlation matrix from the matrix in our stury
+#We're going to create four variables: phonological processing (PP), rapid naming skills (RAN), 
+#reading accuracy (Reading), and (male) sex (sexM).
+#We're going to pretend the first three are standard points, and only full points 
+#I'm taking inspiration to the correlation matrix we create here from the matrix in our real study
 
 #creating a correlation matrix CMatrix in four rows (four variables)
+#I'm just naming it CMatrix. Could have been something else as well, for example "MyThingX".
+#Informative names are preferred, and annotating code so you or someone who later 
+#works on the code can understand what was done
 CMatrix<-matrix(c(1, -0.2, 0.4, -0.1, -0.2, 1, -0.1, -0.05, 0.4, -0.1, 1, -0.15, -0.1, -0.05, -0.15, 1), nrow = 4)
 CMatrix #executing this row prints the created matrix onto the console
 
